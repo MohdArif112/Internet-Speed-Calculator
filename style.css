@@ -46,7 +46,7 @@ body {
 }
 
 @keyframes radarRotate {
-    100%{ transform: rotate(-360deg);}
+    100%{ transform: rotate(-3600deg);}
 }
 .loader:before{
     content: '';
