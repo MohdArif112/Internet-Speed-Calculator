@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detect Internet Speed</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- <script src="index.js"></script> -->
+  </head>
+  <body>
+    <div class="container">
+      <div class="loader-widget">
+        <h1>Check Your Internet Speed</h1>
+        <span class="loader hide"></span>
+        <div class="loader-content">
+          <div class="content hide">24<small><sub>Mbps</sub></small></div>
+          <button id="btn">Check</button>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    document.querySelector('button').addEventListener('click',(e)=> {
+
+var imageLink = 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Tokyo_Sky_Tree_2012_%E2%85%A3.JPG',
+downloadSize =4.6e+6,//bytes
+time_start, time_end,
+downloadSrc = new Image();
+document.querySelector('.loader-content').classList.add('hide');
+document.querySelector('.loader').classList.remove('hide');
+time_start = new Date().getTime();
+var cacheImg = "?nn=" + time_start;
+downloadSrc.src = imageLink + cacheImg;
+console.log(downloadSrc);
+downloadSrc.onload = function (){
+    //this function will triger once image load
+    time_end =  new Date().getTime();
+    var timeDuration = (time_end - time_start)/1000;
+   //console.log(timeDuration);
+   loadedBytes = downloadSize*8;
+   totalSpeed = ((loadedBytes /timeDuration)/1024/1024).toFixed(2);
+   console.log(totalSpeed);
+   let i=0, speedOut;
+   const animate =()=> {
+    if( i < totalSpeed){
+        document.querySelector('.content').innerHTML = i.toFixed(2) + '<sub>Mbps</sub></small>';
+        setTimeout(animate ,20);
+        i+=1.02;
+    }else{
+        document.querySelector('.content').innerHTML = totalSpeed + '<sub>Mbps</sub></small>';
+    }
+   }
+   animate();
+
+   document.querySelector('.content').innerHTML = totalSpeed + '<sub>Mbps</sub></small>';
+   document.querySelector('.loader-content').classList.remove('hide');
+   document.querySelector('.loader-content').classList.add('result');
+document.querySelector('.loader').classList.add('hide');
+document.querySelector('.content').classList.remove('hide');
+e.target.innerText = 'Check Again';
+
+}
+})
+  </script>
+  
+</html>
