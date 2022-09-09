@@ -30,4 +30,4 @@ For support, email arif112mohd@gmail.com or join our Slack channel.
 
 ## Deployment
 
-to deploy : 
+to deploy : https://poetic-syrniki-29d06c.netlify.app
